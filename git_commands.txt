@@ -1,0 +1,35 @@
+Git workflow:
+Stash, pull, commit, push (git stash apply)
+
+issues arise from not following this workflow!
+
+if you ever have any doubt that files are unsaved
+Git checkout -b <name>
+
+ 
+didn’t pull before force push:
+git reset --hard origin/master@{1}
+ 
+pulled and lost a commit
+Git reflog
+git cherry-pick <id>
+git push -f origin master
+
+Any changes that were commited, pushed, or stashed can be easily located
+
+unsaved changes were lost
+git fsck --lost-found
+for blob in $(git fsck --lost-found | awk ‘$2 == “blob” { print $3 }’); do git cat-file -p $blob > $blob.txt; done
+
+
+Delete a commit
+Git reset HEAD^
+Git reset HEAD~
+
+
+merging commits
+Git rebase -i HEAD~*
+replace the 'picks' with squash
+
+merge conflicts
+gitk
